@@ -64,8 +64,7 @@ const ProjectDashboard: React.FC = () => {
   const progressVariants = {
     hidden: { width: 0 },
     visible: { 
-      width: `${stats.completion}%`,
-      transition: { duration: 2, ease: "easeOut" }
+      width: `${stats.completion}%`
     }
   };
 
@@ -196,6 +195,7 @@ const ProjectDashboard: React.FC = () => {
                         variants={progressVariants}
                         initial="hidden"
                         animate="visible"
+                        transition={{ duration: 2, ease: "easeOut" }}
                       />
                     </div>
                   </motion.div>
