@@ -1,0 +1,78 @@
+.todoList {
+  padding: 0 2rem 1rem;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.todoList::-webkit-scrollbar {
+  width: 4px;
+}
+
+.todoList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.todoList::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 2px;
+}
+
+.todoList::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.sectionTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.emptyIcon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.7;
+}
+
+.emptyState p {
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .todoList {
+    padding: 0 1.5rem 1rem;
+  }
+  
+  .emptyState {
+    padding: 3rem 1.5rem;
+  }
+  
+  .emptyIcon {
+    font-size: 3rem;
+  }
+  
+  .emptyState p {
+    font-size: 1rem;
+  }
+}

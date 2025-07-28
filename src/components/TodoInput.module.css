@@ -1,0 +1,74 @@
+.form {
+  padding: 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.inputWrapper {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.input {
+  flex: 1;
+  padding: 1rem 1.25rem;
+  border: 2px solid var(--border-color);
+  border-radius: 16px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.input::placeholder {
+  color: var(--text-secondary);
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.addButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.addButton:hover:not(:disabled) {
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .form {
+    padding: 1.5rem;
+  }
+  
+  .input {
+    padding: 0.875rem 1rem;
+    font-size: 0.95rem;
+  }
+  
+  .addButton {
+    width: 44px;
+    height: 44px;
+  }
+}
