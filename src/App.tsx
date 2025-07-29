@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { TodoInput } from './components/TodoInput';
 import { TodoList } from './components/TodoList';
@@ -64,39 +64,73 @@ function App() {
 
   return (
     <ThemeProvider>
-      {showDashboard ? (
-        <div className="relative">
-          <ProjectDashboard />
-          {/* Toggle Button */}
-          <motion.button
-            onClick={() => setShowDashboard(false)}
-            className="fixed top-6 right-6 z-50 bg-white/10 backdrop-blur-lg border border-white/20 text-white p-3 rounded-full shadow-lg hover:bg-white/20 transition-all duration-300 group"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+      <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
+        {/* Toggle Bar */}
+        <div className="relative z-50 p-6 flex justify-center">
+          <motion.div
+            className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-full p-1 shadow-lg"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1 }}
+            transition={{ duration: 0.5 }}
           >
-            <List className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-          </motion.button>
+            <div className="flex items-center gap-1">
+              <motion.button
+                onClick={() => setShowDashboard(true)}
+                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${
+                  showDashboard
+                    ? 'bg-white text-purple-600 shadow-lg'
+                    : 'text-white/70 hover:text-white hover:bg-white/10'
+                }`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Eye className="w-4 h-4" />
+                Dashboard
+              </motion.button>
+              <motion.button
+                onClick={() => setShowDashboard(false)}
+                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${
+                  !showDashboard
+                    ? 'bg-white text-purple-600 shadow-lg'
+                    : 'text-white/70 hover:text-white hover:bg-white/10'
+                }`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <List className="w-4 h-4" />
+                Todo List
+              </motion.button>
+            </div>
+          </motion.div>
         </div>
-      ) : (
+
+        {/* Main Content */}
         <div className="relative">
-          <TodoApp />
-          {/* Toggle Button */}
-          <motion.button
-            onClick={() => setShowDashboard(true)}
-            className="fixed top-6 right-6 z-50 bg-gradient-to-r from-purple-600 to-blue-600 text-white p-3 rounded-full shadow-lg hover:shadow-glow transition-all duration-300 group"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-          >
-            <Eye className="w-5 h-5 group-hover:scale-110 transition-transform" />
-          </motion.button>
+          <AnimatePresence mode="wait">
+            {showDashboard ? (
+              <motion.div
+                key="dashboard"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ProjectDashboard />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="todos"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <TodoApp />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
-      )}
+      </div>
     </ThemeProvider>
   );
 }

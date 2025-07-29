@@ -69,7 +69,7 @@ const ProjectDashboard: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 p-4 flex items-center justify-center">
+    <div className="p-4 flex items-center justify-center relative">
       {/* Background animated elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-10 -left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"></div>
@@ -78,7 +78,7 @@ const ProjectDashboard: React.FC = () => {
       </div>
 
       <motion.div
-        className="relative max-w-4xl w-full"
+        className="relative max-w-[800px] min-w-[800px] w-full"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
